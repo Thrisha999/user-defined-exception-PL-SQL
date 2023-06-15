@@ -1,0 +1,38 @@
+--Query:To implement user defined exception
+
+--PL/SQL Block:
+declare 
+	b int;
+	a int;
+	c int;
+	exp1 exception;
+	exp2  exception;
+begin
+	a:=&a;
+	b:=&b;
+	if b=0 then
+	 raise exp1;
+	else if b>a then 
+	 raise exp2;
+	else
+	 c:=a/b;
+	end if;
+	end if;
+exception
+	when exp1 then
+	 dbms_output.put_line('b value must not be  zero');
+	when exp2 then
+ 	 dbms_output.put_line('a must be greater than b');
+end;
+/
+--output:
+
+Enter value for a: 12
+old   8:        a:=&a;
+new   8:        a:=12;
+Enter value for b: 0
+old   9:        b:=&b;
+new   9:        b:=0;
+b value must not be  zero
+
+PL/SQL procedure successfully completed.
